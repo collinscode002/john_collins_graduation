@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Collins Kigio - Graduation Tribute</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: 
+        linear-gradient(120deg, rgba(0, 51, 102, 0.6) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(204, 0, 0, 0.6) 100%),
+        url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .image-section img {
+      width: auto;
+      height: 280px; /* smaller portrait size */
+      border-radius: 20px;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+      animation: float 3s ease-in-out infinite;
+      transform: rotate(270deg);
+      object-fit: cover;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: rotate(270deg) translateY(0); }
+      50% { transform: rotate(270deg) translateY(-10px); }
+    }
+
+    .text-section {
+      flex: 1;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 30px 40px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+      z-index: 2;
+    }
+
+    .name {
+      font-size: 2.3em;
+      color: #FFD700;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      margin-bottom: 10px;
+    }
+
+    .heading {
+      font-size: 1.3em;
+      color: #fff;
+      margin-bottom: 25px;
+    }
+
+    .message {
+      color: #f0f0f0;
+      line-height: 1.6;
+      font-size: 1.05em;
+      border-left: 3px solid #FFD700;
+      padding-left: 15px;
+      margin-bottom: 25px;
+    }
+
+    .verse {
+      color: #FFD700;
+      font-style: italic;
+      font-size: 1em;
+      margin-top: 20px;
+    }
+
+    .goddid {
+      font-size: 1.8em;
+      color: #FFD700;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+      margin-top: 40px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+      to { text-shadow: 0 0 30px rgba(255, 215, 0, 1); }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #cfcfcf;
+      margin-top: 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Balloons 🎈 */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 25px;
+      height: 35px;
+      border-radius: 50% 50% 45% 45%;
+      opacity: 0.8;
+      animation: floatBalloon linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
+    }
+
+    /* Confetti Canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .image-section img {
+        height: 220px; /* smaller on mobile */
+        transform: rotate(270deg);
+        margin-bottom: 30px;
+      }
+      .text-section {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+    <div class="image-section">
+      <img src="background.jpg.jpg" alt="Graduation Image">
+    </div>
+
+    <div class="text-section">
+      <div class="name">John Collins Kigio</div>
+      <div class="heading">// 🎓 The Tassel Was Worth The Struggle</div>
+
+      <div class="message">
+        To my amazing parents,<br>
+        your love, your sacrifices, your belief in me<br>
+        have paved the way for this moment.<br><br>
+
+        As I stand here today, I carry your hopes<br>
+        and all the lessons you have given me.<br><br>
+
+        With every step forward I honour you<br>
+        and I trust the journey ahead.
+      </div>
+
+      <div class="verse">
+        // Jeremiah 29:11 — "For I know the plans I have for you," declares the Lord,<br>
+        "plans to prosper you and not to harm you, plans to give you hope and a future."
+      </div>
+
+      <div class="goddid">GOD DID.</div>
+    </div>
+  </div>
+
+  <footer>© 2025 John Collins Kigio | Designed with ❤️ & Code</footer>
+
+  <!-- 🎉 Confetti & Balloons Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    // Confetti Celebration
+    function confettiCelebration() {
+      const duration = 5 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 7,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.9 }
+        });
+        confetti({
+          particleCount: 7,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.9 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    // Balloons Animation
+    const numBalloons = 18;
+    for (let i = 0; i < numBalloons; i++) {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      balloon.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(balloon);
+    }
+
+    // Trigger confetti on page load
+    window.onload = confettiCelebration;
+
+    // Local file path for QR code:
+    // file:///C:/Users/kigsz/Documents/john_collins_graduation.html
+  </script>
+</body>
+</html>
