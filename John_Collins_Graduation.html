@@ -122,6 +122,33 @@
       position: relative;
     }
 
+    /* QR Code Section */
+    .qr-section {
+      text-align: center;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .qr-section p {
+      color: #FFD700;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .qr-image {
+      width: 120px;
+      height: 120px;
+      border: 3px solid #FFD700;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .qr-image:hover {
+      transform: scale(1.1);
+    }
+
     /* Balloons 🎈 */
     .balloon {
       position: fixed;
@@ -199,6 +226,12 @@
     </div>
   </div>
 
+  <!-- 🎓 QR Code Section -->
+  <div class="qr-section">
+    <p>🎓 Scan to view this tribute online:</p>
+    <img src="qr_code.png" alt="QR Code" class="qr-image">
+  </div>
+
   <footer>© 2025 John Collins Kigio | Designed with ❤️ & Code</footer>
 
   <!-- 🎉 Confetti & Balloons Script -->
@@ -241,9 +274,6 @@
 
     // Trigger confetti on page load
     window.onload = confettiCelebration;
-
-    // Local file path for QR code:
-    // file:///C:/Users/kigsz/Documents/john_collins_graduation.html
   </script>
 </body>
 </html>
