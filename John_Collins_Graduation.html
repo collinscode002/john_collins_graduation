@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Collins Kigio - Graduation Tribute</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #00274D, #8B0000);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .image-box img {
+      width: 250px;
+      height: auto;
+      border-radius: 20px;
+      transform: rotate(90deg);
+      box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.3);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .image-box img:hover {
+      transform: rotate(90deg) scale(1.05);
+      box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.5);
+    }
+
+    .text-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .text-box h1 {
+      color: #FFD700;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .text-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .qr {
+      margin-top: 30px;
+    }
+
+    .qr img {
+      width: 130px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* 🎓 Mobile responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .image-box img {
+        width: 180px;
+        transform: rotate(90deg);
+      }
+
+      .text-box {
+        width: 90%;
+      }
+
+      .text-box h1 {
+        font-size: 1.6rem;
+      }
+
+      .text-box p {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* 🎊 Confetti Animation */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <div class="container">
+    <div class="image-box">
+      <img src="your-image.jpg" alt="John Collins Graduation">
+    </div>
+
+    <div class="text-box">
+      <h1>🎓 John Collins Kigio</h1>
+      <p>
+        To my amazing friends, family, and mentors — thank you for your love and support.  
+        As I celebrate this milestone, I remember every late night, every effort, and every lesson.  
+        Here's to the future filled with even greater achievements! 💫
+      </p>
+    </div>
+  </div>
+
+  <div class="qr">
+    <img src="your-qr-code.png" alt="QR Code to my Graduation Page">
+  </div>
+
+  <script>
+    // 🎉 Confetti Effect
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confetti = [];
+    for (let i = 0; i < 100; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 6 + 2,
+        d: Math.random() * 10 + 10,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+      updateConfetti();
+    }
+
+    function updateConfetti() {
+      confetti.forEach((p) => {
+        p.y += p.d / 20;
+        if (p.y > canvas.height) {
+          p.y = 0 - p.r;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    setInterval(drawConfetti, 30);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
