@@ -6,238 +6,245 @@
   <title>John Collins Kigio - Graduation Tribute</title>
 
   <style>
-    /* 🎨 Base Styling */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #00274D, #8B0000);
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       min-height: 100vh;
       overflow-x: hidden;
-      text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
+      background: linear-gradient(120deg, rgba(0, 51, 102, 0.5) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(204, 0, 0, 0.5) 100%);
+      position: relative;
     }
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 40px;
-      width: 100%;
-      max-width: 1100px;
-    }
-
-    .image-box {
-      flex: 1 1 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 250px;
-    }
-
-    .image-box img {
-      width: 100%;
-      max-width: 250px;
-      height: auto;
-      border-radius: 20px;
-      transform: rotate(90deg);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .image-box img:hover {
-      transform: rotate(90deg) scale(1.05);
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
-    }
-
-    .text-box {
-      flex: 1 1 400px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-sizing: border-box;
-      text-align: center;
-      min-width: 280px;
-    }
-
-    .text-box h1 {
-      color: #FFD700;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .text-box p {
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    .qr {
-      margin-top: 30px;
-    }
-
-    .qr img {
-      width: 130px;
-      max-width: 40%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    /* 💻 Large Screens (Desktops) */
-    @media (min-width: 1200px) {
-      .text-box h1 {
-        font-size: 2.5rem;
-      }
-
-      .text-box p {
-        font-size: 1.1rem;
-      }
-
-      .image-box img {
-        max-width: 280px;
-      }
-    }
-
-    /* 📱 Tablets */
-    @media (max-width: 992px) {
-      .container {
-        flex-direction: column;
-        gap: 25px;
-      }
-
-      .text-box {
-        max-width: 90%;
-      }
-
-      .image-box img {
-        transform: rotate(90deg);
-        width: 200px;
-      }
-
-      .text-box h1 {
-        font-size: 1.8rem;
-      }
-
-      .text-box p {
-        font-size: 1rem;
-      }
-    }
-
-    /* 📱 Mobile Phones */
-    @media (max-width: 600px) {
-      body {
-        padding: 15px;
-      }
-
-      .image-box img {
-        width: 160px;
-        transform: rotate(90deg);
-      }
-
-      .text-box {
-        padding: 20px;
-      }
-
-      .text-box h1 {
-        font-size: 1.5rem;
-      }
-
-      .text-box p {
-        font-size: 0.95rem;
-      }
-
-      .qr img {
-        width: 100px;
-      }
-    }
-
-    /* 🎊 Confetti Animation */
-    canvas {
+    /* 🎈 Balloons & Confetti Container (on top of everything) */
+    #animations {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      z-index: 100;
+      pointer-events: none; /* clicks pass through */
+      z-index: 999; /* in front of all content */
+    }
+
+    .balloon, .confetti {
+      position: absolute;
+      bottom: -50px;
+      border-radius: 50%;
+    }
+
+    .balloon {
+      width: 20px;
+      height: 30px;
+      animation: floatBalloon linear infinite;
+    }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-120vh) translateX(30px) rotate(15deg); opacity: 0; }
+    }
+
+    .confetti {
+      width: 5px;
+      height: 5px;
+      animation: floatConfetti linear infinite;
+    }
+
+    @keyframes floatConfetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* 🌟 Layout Container */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 30px 15px;
+      position: relative;
+      z-index: 1; /* below balloons/confetti */
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .image-section img {
+      width: 85%; /* Increased from 70% */
+      max-width: 400px; /* Increased from 350px */
+      height: auto;
+      border-radius: 20px;
+      object-fit: cover;
+      filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+      animation: float 4s ease-in-out infinite;
+      transition: all 0.4s ease-in-out;
+      /* Rotate the image to portrait orientation (270 degrees) */
+      transform: rotate(270deg);
+    }
+
+    .image-section img:hover {
+      transform: rotate(270deg) scale(1.03);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: rotate(270deg) translateY(0); }
+      50% { transform: rotate(270deg) translateY(-8px); }
+    }
+
+    .text-section {
+      flex: 1;
+      max-width: 500px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      text-align: left;
+    }
+
+    .name {
+      font-size: 2.2em;
+      color: #FFD700;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.9);
+      margin-bottom: 10px;
+    }
+
+    .heading {
+      font-size: 1.3em;
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      color: #f0f0f0;
+      line-height: 1.6;
+      font-size: 1em;
+      border-left: 3px solid #FFD700;
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    .verse {
+      color: #FFD700;
+      font-style: italic;
+      font-size: 1em;
+      margin-top: 15px;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    }
+
+    .goddid {
+      font-size: 1.7em;
+      color: #FFD700;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 0 25px rgba(255, 215, 0, 1);
+      margin-top: 30px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 8px rgba(255, 215, 0, 0.6); }
+      to { text-shadow: 0 0 20px rgba(255, 215, 0, 1); }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85em;
+      color: #d9d9d9;
+      margin-top: 30px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .container { flex-direction: column; text-align: center; padding: 20px 10px; }
+      .text-section { padding: 20px 15px; text-align: center; }
+      .image-section img { width: 90%; max-width: 350px; } /* Increased from 80% and 300px */
+      .name { font-size: 2em; }
+      .heading { font-size: 1.2em; }
+    }
+
+    @media (max-width: 500px) {
+      .name { font-size: 1.8em; }
+      .message { font-size: 0.95em; }
+      .verse { font-size: 0.9em; }
     }
   </style>
 </head>
-
 <body>
-  <canvas id="confetti"></canvas>
+
+  <!-- 🎈 Balloons & Confetti -->
+  <div id="animations"></div>
 
   <div class="container">
-    <div class="image-box">
-      <img src="your-image.jpg" alt="John Collins Graduation">
+    <div class="image-section">
+      <img src="background.jpg.jpg" alt="Floating Image">
     </div>
 
-    <div class="text-box">
-      <h1>🎓 John Collins Kigio</h1>
-      <p>
-        To my amazing friends, family, and mentors — thank you for your love and support.<br>
-        As I celebrate this milestone, I remember every late night, every effort, and every lesson.<br>
-        Here's to a future filled with even greater achievements! 💫
-      </p>
+    <div class="text-section">
+      <div class="name">John Collins Kigio</div>
+      <div class="heading">🎓 The Tassel Was Worth The Struggle</div>
+
+      <div class="message">
+        To my amazing parents,<br>
+        your love, your sacrifices, your belief in me<br>
+        have paved the way for this moment.<br><br>
+        As I stand here today, I carry your hopes<br>
+        and all the lessons you have given me.<br><br>
+        With every step forward I honour you<br>
+        and I trust the journey ahead.
+      </div>
+
+      <div class="verse">
+        Jeremiah 29:11 — "For I know the plans I have for you," declares the Lord,<br>
+        "plans to prosper you and not to harm you, plans to give you hope and a future."
+      </div>
+
+      <div class="goddid">GOD DID.</div>
     </div>
   </div>
 
-  <div class="qr">
-    <img src="your-qr-code.png" alt="QR Code to my Graduation Page">
-  </div>
+  <footer>© 2025 John Collins Kigio | Designed with ❤️ & Code</footer>
 
   <script>
-    // 🎉 Confetti Effect
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const colors = ['#FF3B3F', '#FF9F1C', '#2EC4B6', '#FFD700', '#A020F0'];
+    const container = document.getElementById('animations');
 
-    const confetti = [];
-    for (let i = 0; i < 120; i++) {
-      confetti.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 6 + 2,
-        d: Math.random() * 10 + 10,
-        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-      });
+    // Balloons
+    for (let i = 0; i < 30; i++) {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.width = 20 + Math.random() * 20 + 'px';
+      balloon.style.height = 30 + Math.random() * 30 + 'px';
+      balloon.style.animationDuration = 5 + Math.random() * 5 + 's';
+      container.appendChild(balloon);
     }
 
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confetti.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      });
-      updateConfetti();
+    // Confetti
+    for (let i = 0; i < 150; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.width = 5 + Math.random() * 5 + 'px';
+      confetti.style.height = 5 + Math.random() * 5 + 'px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = 3 + Math.random() * 4 + 's';
+      container.appendChild(confetti);
     }
-
-    function updateConfetti() {
-      confetti.forEach((p) => {
-        p.y += p.d / 20;
-        if (p.y > canvas.height) {
-          p.y = 0 - p.r;
-          p.x = Math.random() * canvas.width;
-        }
-      });
-    }
-
-    setInterval(drawConfetti, 30);
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
   </script>
+
 </body>
 </html>
